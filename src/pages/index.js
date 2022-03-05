@@ -30,7 +30,7 @@ const IntroSection = () => {
     <section className={`p-10 grid gap-10 md:grid-cols-2 lg:grid-cols-5 md:h-screen bg-black md:snap-start justify-center md:justify-end`}>
       <div className="lg:col-span-2 flex flex-col p-5 md:pl-12 md:pb-12 justify-center">
         <StaticImage
-          src="../images/sergiotbh_avatar.jpeg"
+          src="../images/sergiotbh_avatar.jpg"
           width={200}
           height={200}
           aspectRatio={1}
