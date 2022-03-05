@@ -8,5 +8,10 @@ module.exports = {
     options: {
       "icon": "src/images/icon.png"
     }
-  }]
+  },
+  'gatsby-plugin-postcss',
+  `gatsby-plugin-image`,
+  `gatsby-plugin-sharp`,
+  `gatsby-transformer-sharp`,
+]
 };
