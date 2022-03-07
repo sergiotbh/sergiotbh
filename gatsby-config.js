@@ -1,8 +1,8 @@
 module.exports = {
   pathPrefix: "/",
   siteMetadata: {
-      title: ``,
-    siteUrl: `https://www.yourdomain.tld`
+      title: `sergiotbh.dev`,
+    siteUrl: `https://sergiotbh.dev`
   },
   plugins: ["gatsby-plugin-react-helmet", {
     resolve: 'gatsby-plugin-manifest',
