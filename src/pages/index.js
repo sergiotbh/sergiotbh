@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Layout from "../components/Layout";
 import JsLogo from '../images/jslogo.svg'
 import GatsbyLogo from '../images/gatsbylogo.svg'
@@ -7,8 +7,6 @@ import TailwindLogo from '../images/tailwindlogo.svg'
 import CasaMuchaLogo from '../images/casamucha_horizontal_logo.svg'
 import { StaticImage } from "gatsby-plugin-image";
 import { ChevronDownIcon, ClipboardIcon } from '@heroicons/react/outline'
-import ChurchLogo from '../images/churchorg_logo.svg' 
-import ChurchTextLogo from '../images/churchorg_text.svg' 
 import AagnesLogo from '../images/aagnes_logo_black.svg'
 import MaribarraLogo from '../images/logo_maribarra_black.svg'
 
@@ -37,20 +35,16 @@ const sectionProperties = [{
 const IndexPage = () => {
 
   const generalContainerRef = useRef()
+  const isBrowser = typeof window !== "undefined"
+  const { innerHeight: height } = isBrowser ? window : {innerHeight: 0};
 
   const [sectionIdx, setSectionIdx] = useState(0)
-  const [offsetY, setOffsetY] = useState(0)
 
   const handleScroll = () => {
-    const vHeight = generalContainerRef.current.clientHeight;
-    const idx = generalContainerRef.current.scrollTop / vHeight
-    setOffsetY(generalContainerRef.current.scrollTop)
-    setSectionIdx(Math.round(idx))
+    const idx = generalContainerRef.current.scrollTop / height
+    setSectionIdx(idx <= 4 ? Math.round(idx) : 4)
   }
 
-  useEffect(() => {
-    console.log(sectionIdx);
-  }, [sectionIdx])
 
   return (
     <Layout>
@@ -162,49 +156,6 @@ const CasaMuchaSection = ({selected}) => (
   </SectionContainer>
 )
 
-// const ChurchSection = ({selected}) => (
-//   <SectionContainer selected={selected}>
-//     <TitleContainer customStyles="text-white pt-28 md:pt-0">
-//       <div className="flex justify-center">
-//         <img
-//           src={ChurchLogo}
-//           className="w-8 mr-3 md:w-12"
-//           alt="Church Icon"
-//         />
-//         <img
-//           src={ChurchTextLogo}
-//           className="w-40 md:w-64 mt-1 md:mt-2"
-//           alt="Church.Org"
-//         />
-//       </div>
-//       <Paragraph>
-//         Church.Org is a service that helps people find churches in their area and connect with other members.
-//       </Paragraph>
-//       <Paragraph>
-//         Developed with ReactJs. Styled with Styled Components.
-//       </Paragraph>
-//       <SubParagraph customStyles="text-xs">
-//         Made for Cratebind, LLC. Logo and graphics belong to Church.org
-//       </SubParagraph>
-//     </TitleContainer>
-//     <ContentContainer customStyles="flex-col">
-//         <StaticImage
-//           src="../images/churchorg_snapshot1.png"
-//           className="md:absolute top-0 lg:top-20 left-0 xl:left-8 lg:w-2/3"
-//           alt="Church.org website"
-//         />
-//         <StaticImage
-//           src="../images/churchorg_snapshot2.png"
-//           style={{
-//             position: 'absolute !important'
-//           }}
-//           className="absolute z-0 top-0 md:top-auto md:bottom-20 xl:bottom-0 right-0 w-4/5 md:w-full lg:w-2/3 drop-shadow-2xl"
-//           alt="Church.org find a church page"
-//         />
-//     </ContentContainer>
-//   </SectionContainer>
-// )
-
 const AagnesSection = ({selected}) => (
   <SectionContainer selected={selected}>
     <TitleContainer customStyles="text-black pt-28 md:pt-0">
@@ -228,7 +179,7 @@ const AagnesSection = ({selected}) => (
         <StaticImage
           src="../images/aagnes_espacio.jpg"
           className="md:absolute top-0 lg:top-20 left-0 xl:left-8 lg:w-2/3"
-          alt="Church.org website"
+          alt="Aagnes Espacio detail"
         />
         <StaticImage
           src="../images/aagnes_hero.jpg"
@@ -236,7 +187,7 @@ const AagnesSection = ({selected}) => (
             position: 'absolute !important'
           }}
           className="absolute z-0 top-0 md:top-auto md:bottom-20 xl:bottom-0 right-0 w-4/5 md:w-full lg:w-2/3 drop-shadow-2xl"
-          alt="Church.org find a church page"
+          alt="Aagnes website"
         />
     </ContentContainer>
   </SectionContainer>
@@ -267,16 +218,16 @@ const MaribarraSection = ({selected}) => (
     <ContentContainer customStyles="flex-col md:justify-between md:py-24">
         <StaticImage
           src="../images/maribarra-ss1.jpg"
-          className="lg:absolute top-0 lg:top-20 left-0 xl:left-8 lg:w-full 2xl:w-1/2"
-          alt="Church.org website"
+          className="lg:absolute top-0 lg:top-20 left-0 xl:left-8 lg:w-full 2xl:w-1/2 z-20"
+          alt="Maribarra website"
         />
         <StaticImage
           src="../images/maribarra-ss2.jpg"
           style={{
             position: 'absolute !important'
           }}
-          className="lg:absolute mt-2 z-0 top-0 md:top-auto md:bottom-20 xl:bottom-0 right-0 w-full 2xl:w-1/2 drop-shadow-2xl"
-          alt="Church.org find a church page"
+          className="lg:absolute mt-2 top-0 md:top-auto md:bottom-20 xl:bottom-0 right-0 w-full 2xl:w-1/2 drop-shadow-2xl"
+          alt=""
         />
     </ContentContainer>
   </SectionContainer>
